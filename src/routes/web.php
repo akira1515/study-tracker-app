@@ -17,3 +17,6 @@ Route::get('/', function () {
 
 Route::get('/quiz', 'QuizController@list')->name('quiz.list');
 Route::get('/quiz/{big_question_id}', 'QuizController@detail')->name('quiz.detail');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
