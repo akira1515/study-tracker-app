@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBigQuestionsTable extends Migration
+class CreateQuestionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,15 @@ class CreateBigQuestionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('big_questions', function (Blueprint $table) {
+        Schema::create('questions', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title');
-            $table->integer('big_question_order');
+            $table->string('img');
+            $table->unsignedBigInteger('big_question_id');
+            $table->integer('question_order')->default(1);
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('big_question_id')->references('id')->on('big_questions')->onDelete('cascade');
         });
     }
 
@@ -29,6 +32,6 @@ class CreateBigQuestionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('big_questions');
+        Schema::dropIfExists('questions');
     }
 }
