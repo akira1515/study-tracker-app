@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facade;
 
-// use App\Models\Lang;
-// use App\Models\Content;
+use App\Models\Lang;
+use App\Models\Content;
 use App\Models\StudyRecord;
 
 class WebappController extends Controller
@@ -19,9 +21,9 @@ class WebappController extends Controller
         $month = date('m');
         $day = date('d');
 
-        $date_sum = StudyRecord::sum('hours');
-        $month_sum = StudyRecord::whereYear('date', $year)->whereMonth('date', $month)->sum('hours');
-        $year_sum = StudyRecord::whereYear('date', $year)->whereMonth('date', $month)->whereDay('date', $day)->sum('hours');
+        $day_sum = StudyRecord::sum('hour');
+        $month_sum = StudyRecord::whereYear('date', $year)->whereMonth('date', $month)->sum('hour');
+        $year_sum = StudyRecord::whereYear('date', $year)->whereMonth('date', $month)->whereDay('date', $day)->sum('hour');
 
         // // // 言語名を取得
         // $langs = Lang::all();
@@ -40,6 +42,7 @@ class WebappController extends Controller
 
 
 
-        return view('webapp.index',compact('date_sum', 'month_sum', 'year_sum'));
+        return view('webapp.index',compact('day_sum', 'month_sum', 'year_sum')
+    );
     }
 }

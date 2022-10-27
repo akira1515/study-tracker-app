@@ -17,6 +17,7 @@
         <h1 class="logo">
             <a href=""><img src="{{ asset('/images/posse_logo.jpg') }}" alt=""></a>
             <p>4th week</p>
+            <p>{{ Auth::user()->name }} 様 </p>
         </h1>
         
         <p class="btn record_register" id="openModal"><span>記録・登録</span></p>
@@ -27,17 +28,17 @@
                 <div class="time">
                     <section class="item">
                         <p class="time_span">Today</p>
-                        <p class="time_num"></p>
+                        <p class="time_num">{{ $day_sum }}</p>
                         <p class="time_hour">hour</p>
                     </section>
                     <section class="item">
                         <p class="time_span">Month</p>
-                        <p class="time_num"> </p>
+                        <p class="time_num">{{ $month_sum }} </p>
                         <p class="time_hour">hour</p>
                     </section>
                     <section class="item">
                         <p class="time_span">Total</p>
-                        <p class="time_num"> </p>
+                        <p class="time_num">{{ $year_sum }} </p>
                         <p class="time_hour">hour</p>
                     </section>
                 </div>
