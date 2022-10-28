@@ -20,10 +20,10 @@ class WebappController extends Controller
         $year = date('Y');
         $month = date('m');
         $day = date('d');
-
-        $day_sum = StudyRecord::sum('hour');
+        
+        $day_sum = StudyRecord::whereYear('date', $year)->whereMonth('date', $month)->whereDay('date', $day)->sum('hour');
         $month_sum = StudyRecord::whereYear('date', $year)->whereMonth('date', $month)->sum('hour');
-        $year_sum = StudyRecord::whereYear('date', $year)->whereMonth('date', $month)->whereDay('date', $day)->sum('hour');
+        $year_sum = StudyRecord::sum('hour');
 
         // // // 言語名を取得
         // $langs = Lang::all();
