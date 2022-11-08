@@ -42,41 +42,15 @@ google.charts.setOnLoadCallback(drawChart);
 //     const studyHour = res.json()
 //     console.log(`${studyHour.one}`);
 
+// const json_string = JSON.stringify(dailySum);
+// console.log(json_string); // 確認用
+
 function drawChart() {
-  var data = google.visualization.arrayToDataTable([
-    ["Element", "Density", { role: "style"} ],
-    ["", 3, "#36C5F8" ],
-    ["2", 4, "#36C5F8"],
-    ["", 5, "#36C5F8"],
-    ["4", 3, "#36C5F8"],
-    ["", 0, "#36C5F8"],
-    ["6", 0, "#36C5F8"],
-    ["", 4, "#36C5F8"],
-    ["8", 2, "#36C5F8"],
-    ["", 2, "#36C5F8"],
-    ["10", 8, "#36C5F8"],
-    ["", 8, "#36C5F8"],
-    ["12", 2, "#36C5F8"],
-    ["", 2, "#36C5F8"],
-    ["14", 1, "#36C5F8"],
-    ["", 7, "#36C5F8"],
-    ["16", 4, "#36C5F8"],
-    ["", 4, "#36C5F8"],
-    ["18", 3, "#36C5F8"],
-    ["", 3, "#36C5F8"],
-    ["20", 3, "#36C5F8"],
-    ["", 2, "#36C5F8"],
-    ["22", 2, "#36C5F8"],
-    ["", 6, "#36C5F8"],
-    ["24", 6, "#36C5F8"],
-    ["", 2, "#36C5F8"],
-    ["26", 2, "#36C5F8"],
-    ["", 1, "#36C5F8"],
-    ["28", 1, "#36C5F8"],
-    ["", 1, "#36C5F8"],
-    ["30", 7, "#36C5F8"],
-    ["", 1, "#36C5F8"],
-  ]);
+  var data = google.visualization.arrayToDataTable(
+    // ["Element", "Density" ],
+    arry
+    
+  );
 
   // 学習言語の円グラフ
   var data_learning_language = google.visualization.arrayToDataTable([
@@ -99,19 +73,21 @@ function drawChart() {
     ['課題',  40]
   ]);
 
-  var view = new google.visualization.DataView(data);
-  view.setColumns([0, 1,
-                { calc: "stringify",
-                  sourceColumn: 1,
-                  type: "string",
-                  role: "annotation" },
-                2]);
+//   var view = new google.visualization.DataView(data);
+//   view.setColumns([0, 1,
+//                 { calc: "stringify",
+//                   sourceColumn: 1,
+//                   type: "string",
+//                   role: "annotation" 
+//                 },
+//                 2]);
 
   // 棒グラフのオプション
   var chart_bar_options = {
     width: 616,
     height: 364,
-    bar: {groupWidth: "55%"},
+    bar: {groupWidth: "65%"},
+    colors: ["#36C5F8"],
     legend: { position: "none" },
     pieHole: 0.4,
     hAxis:{
@@ -149,7 +125,7 @@ function drawChart() {
   };
   
   var chart_bar = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
-  chart_bar.draw(view, chart_bar_options);
+  chart_bar.draw(data, chart_bar_options);
 
   var chart_learning_language = new google.visualization.PieChart(document.getElementById('donutchart_learning_language'));
   chart_learning_language.draw(data_learning_language, chart_circle_options);

@@ -135,7 +135,7 @@
                 ×
             </div>
             <div class="loading" id="load"></div>
-            <img id="done" class="done" src="done.png" alt="">
+            <img id="done" class="done" src="{{ asset('/images/done.png') }}" alt="">
         </div>
 
     </section>
@@ -150,10 +150,59 @@
         </p>
     </div>
     
-
+    
+    <p id="test"></p>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> -->
+
+        {{-- <script>
+        const to_json = [
+            {Element : "Element", Density : "Density"},
+            {Element :"", Density :3},
+        ]
+console.log(to_json); // 確認用
+console.log(to_json[0].Element); // 「JsonData1」が表示される
+
+
+        
+
+    </script> --}}
+
+<script>
+    let date = @json($dates);
+    let arry = []
+    date.forEach(function(val){
+    let dateV = val.date
+    let str = dateV.slice(8); 
+
+    let arr = [str, val.hour];
+    arry.push(arr);
+});
+arry.unshift(["Element", "Density"]);
+
+
+
+
+
+
+
+// //name だけを取り出して配列にする。
+// $date_hour = array_column($date, 'hour');
+
+// //中身を確認
+// foreach($date_hour as $str_name){
+//     console.log($str_name);
+// } 
+
+// console.log(date);
+
+</script>
+{{-- @foreach ($dates as $date => $hour)
+    dailySum.push([{{ $date }}, {{ $hour }}]);
+@endforeach --}}
+
+
     <script src="{{ asset('/js/main.js') }}"></script>
     
 </body>
