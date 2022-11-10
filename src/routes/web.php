@@ -19,4 +19,11 @@ Route::get('/quiz', 'QuizController@list')->name('quiz.list');
 Route::get('/quiz/{big_question_id}', 'QuizController@detail')->name('quiz.detail');
 Auth::routes();
 
+Route::get('/createList', 'QuizController@createList')->name('quizList.create');
+Route::post('/storeList', 'QuizController@storeList')->name('quizList.store');
+Route::get('/edit', 'QuizController@edit')->name('quiz.edit');
+Route::get('/edit/{id}', 'QuizController@editList')->name('quizList.edit');
+Route::post('/update/{id}', 'QuizController@updateList')->name('quizList.update');
+Route::post('/destroy/{id}', 'QuizController@destroyList')->name('quizList.destroy');
+
 Route::get('/home', 'HomeController@index')->name('home');

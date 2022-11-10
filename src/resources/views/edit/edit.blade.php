@@ -10,12 +10,11 @@
 
 <body>
     @foreach ($big_questions as $big_question)
-        <p><a href="/quiz/{{ $big_question->id }}">{{ $big_question->title }}</a></p>
+        <a href="{{route('quizList.edit',['id'=>$big_question->id])}}">{{ $big_question->title }}/{{ __('編集') }}</a>
     @endforeach
 
 
     <a href="/createList">問題リスト追加</a>
-    <a href="/edit">問題リスト編集</a>
 </body>
 
 </html>

@@ -16,6 +16,8 @@
             @yield('quiz_content')
         </div>
     </div>
+    <a href="/quiz">問題リストへ</a>
+    
 
     @yield('script')
 </body>
