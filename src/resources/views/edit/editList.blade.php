@@ -17,13 +17,14 @@
             <input type="text" name=title value="{{$big_question->title}}">
             </div>
 
-            <div>
+            {{-- <div>
             設問
-            </div>
+            </div> --}}
 
             <div>
             {{-- 画像 --}}
-
+            {{-- <a href="{{route('quizImg.edit',['img'=>$question->id])}}">画像編集</a> --}}
+            {{-- <input type="file" name=img value="{{$question->img}}"> --}}
             </div>
 
             <div>

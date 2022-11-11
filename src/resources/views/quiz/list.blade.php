@@ -15,7 +15,9 @@
 
 
     <a href="/createList">問題リスト追加</a>
-    <a href="/edit">問題リスト編集</a>
+    <br>
+    <a href="/edit">問題タイトル編集</a>
+    <a href="/">問題画像編集</a>
 </body>
 
 </html>
