@@ -17,10 +17,10 @@
 //   }
 // }
 
-var sample = document.getElementById('sample');
-var fp = flatpickr(sample, {
-    dateFormat: 'Y-n-j(l)' // フォーマットの変更
-});
+// var sample = document.getElementById('sample');
+// var fp = flatpickr(sample, {
+//     dateFormat: 'Y-m-d' // フォーマットの変更
+// });
 
 window.addEventListener('DOMContentLoaded', function(){
   /** jQueryの処理 */
@@ -48,30 +48,31 @@ google.charts.setOnLoadCallback(drawChart);
 function drawChart() {
   var data = google.visualization.arrayToDataTable(
     // ["Element", "Density" ],
-    arry
-    
+    date_arry
   );
 
   // 学習言語の円グラフ
-  var data_learning_language = google.visualization.arrayToDataTable([
-    ['Task', 'Hours per Day'],
-    ['HTML',     30],
-    ['CSS',      20,],
-    ['JavaScript',  10],
-    ['PHP', 5],
-    ['Laravel',    5],
-    ['SQL',    20],
-    ['SHELL',   20],
-    ['その他',    10]
-  ]);
+  var data_learning_language = google.visualization.arrayToDataTable(
+    studied_lang_arry
+    // ['Lang', 'Hours'],
+    // ['HTML',     30],
+    // ['CSS',      20,],
+    // ['JavaScript',  10],
+    // ['PHP', 5],
+    // ['Laravel',    5],
+    // ['SQL',    20],
+    // ['SHELL',   20],
+    // ['その他',    10]
+  );
 
   // 学習コンテンツの円グラフ
-  var data_learning_contents = google.visualization.arrayToDataTable([
-    ['Task', 'Hours per Day'],
-    ['N予備校',     30],
-    ['ドットインストール',      30],
-    ['課題',  40]
-  ]);
+  var data_learning_contents = google.visualization.arrayToDataTable(
+    studied_content_arry
+    // ['Content', 'Hours'],
+    // ['N予備校',     30],
+    // ['ドットインストール',      30],
+    // ['課題',  40]
+  );
 
 //   var view = new google.visualization.DataView(data);
 //   view.setColumns([0, 1,
@@ -87,7 +88,7 @@ function drawChart() {
     width: 616,
     height: 364,
     bar: {groupWidth: "65%"},
-    colors: ["#36C5F8"],
+    colors: ["#36C5F8"], //棒グラフの色
     legend: { position: "none" },
     pieHole: 0.4,
     hAxis:{
@@ -98,7 +99,7 @@ function drawChart() {
     // vAxis: { format: '#月', },
     vAxis:{
       // baselineColor:'red',
-      textStyle: {color: '#ABC6DA', fontName: 'Arial', fontSize: 13　　}, 
+      textStyle: {color: '#ABC6DA', fontName: 'Arial', fontSize: 13}, 
       gridlines: { color: '#0000000', count: 0},
       title:"", format:"#.#h"
     }

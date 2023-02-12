@@ -13,6 +13,8 @@
 
 use Illuminate\Support\Facades\Mail;
 use App\Mail\TestMail;
+use Illuminate\Http\Request;
+use App\Http\Controllers\WebappController;
 
 Route::get('/testmail', function(){
     Mail::to('test@example.com')->send(new TestMail);
@@ -23,9 +25,27 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/webapp', 'WebappController@index');
-Auth::routes();
+// Route::resource('webapp', '\App\Http\Controllers\WebappController');
+Route::group(
+    ['middleware' => 'auth'],
+    function () {
+        Auth::routes();
+        Route::get('/webapp/index', 'WebappController@index')->name('webapp');
+        Route::post('/webapp/index', 'WebappController@execStore')->name('execStore');
+        Route::get('/webapp/test', 'WebappController@test')->name("test");
+        
+        // Route::post('/webapp', function(Request $request){
+        // });
+        
 
+        
+        
+
+        
+        
+
+    }
+);
 Route::get('/home', 'HomeController@index')->name('home');
 
 

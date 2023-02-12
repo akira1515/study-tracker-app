@@ -12,7 +12,7 @@
     <title>posse-app</title>
 </head>
 <body>
-
+    {{-- {{ $date }} --}}
     <header>
         <h1 class="logo">
             <a href=""><img src="{{ asset('/images/posse_logo.jpg') }}" alt=""></a>
@@ -51,23 +51,18 @@
                     <h1 class="learning_language">学習言語</h1>
                     <div id="donutchart_learning_language" style=""></div>
                     <ul class="learning_language_lists">
-                        <li class="list_1">JavaScript</li>
-                        <li class="list_2">CSS</li>
-                        <li class="list_3">PHP</li>
-                        <li class="list_4">HTML</li>
-                        <li class="list_5">Laravel</li>
-                        <li class="list_6">SQL</li>
-                        <li class="list_7">SHELL</li>
-                        <li class="list_8">情報システム基礎知識（その他）</li>
+                        @foreach($langs as $id => $lang)
+                            <li class="list_{{$id+1}}">{{$lang->name}}</li>
+                        @endforeach
                     </ul>
                 </section>
                 <section class="circle_graph2">
                     <h1 class="learning_contents">学習コンテンツ</h1>
                     <div id="donutchart_learning_contents" style=""></div>
                     <ul class="learning_contents_lists">
-                        <li class="list_1">ドットインストール</li>
-                        <li class="list_2">N予備校</li>
-                        <li class="list_3">POSSE課題</li>
+                        @foreach($contents as $id => $content)
+                            <li class="list_{{$id+1}}">{{$content->name}}</li>
+                        @endforeach
                     </ul>
                 </section>
             </div>
@@ -79,65 +74,52 @@
     <section id="modalArea" class="modalArea">
         <div id="modalBg" class="modalBg"></div>
         <div class="modalWrapper">
-            <div class="modalContents" id="modalContents">
-                <div class="first_container">
-                    <p class="learning_day">学習日</p>
-                    <!-- <input type="text" class="learning_date input_space"> -->
-                    <input type="text" class="learning_date input_space" id="sample">
-                    <div class="learning_contents">
-                    学習コンテンツ（複数選択可）
+            <form method="post"  action="{{ route('execStore')}}" class="form-horizontal">
+                @csrf
+                <div class="modalContents" id="modalContents">
+                    <div class="first_container">
+                        <p class="learning_day">学習日</p>
+                            {{-- <input type="text" name="date" class="learning_date input_space" id="sample"> --}}
+                            <input type="date" name="date" class="learning_date input_space">
+                        <div class="learning_contents">
+                        学習コンテンツ（複数選択可）
+                        </div>
+                        <h1 class="learning_contents_choices">
+                            @foreach($contents as $id => $content)
+                                <label><input type="checkbox" name="studiedContent" value="{{ $id+1 }}" class="checkbox">
+                                    <span class="checkbox-fontas">{{$content->name}}</span></label>
+                            @endforeach
+                        </h1>
+                        <div class="learning_language">
+                        学習言語（複数選択可）
+                        </div>
+                        <h1 class="learning_contents_choices">
+                            @foreach($langs as $id => $lang)
+                                <label><input type="checkbox" name="studiedLang" value="{{ $id+1 }}" class="checkbox">
+                                    <span class="checkbox-fontas">{{$lang->name}}</span></label>
+                            @endforeach
+                        </h1>
                     </div>
-                    <h1 class="learning_contents_choices">
-                            <label><input type="checkbox" class="checkbox">
-                                <span class="checkbox-fontas">N予備校</span></label>
-                            <label><input type="checkbox" class="checkbox">
-                                <span class="checkbox-fontas">ドットインストール</span></label>
-                                <!-- <br><br><br> -->
-                            <label><input type="checkbox" class="checkbox">
-                                <span class="checkbox-fontas checkbox-fontas_last">POSSE課題</span></label>
-                    </h1>
-                    <div class="learning_language">
-                    学習言語（複数選択可）
-                    </div>
-                    <h1 class="learning_contents_choices">
-                        <label><input type="checkbox" class="checkbox">
-                            <span class="checkbox-fontas">HTML</span></label>
-                        <label><input type="checkbox" class="checkbox">
-                            <span class="checkbox-fontas">CSS</span></label>
-                            <!-- <br><br><br> -->
-                        <label><input type="checkbox" class="checkbox">
-                            <span class="checkbox-fontas">JavaScript</span></label>
-                        <label><input type="checkbox" class="checkbox">
-                            <span class="checkbox-fontas">PHP</span></label>
-                        <label><input type="checkbox" class="checkbox">
-                            <span class="checkbox-fontas">Laravel</span></label>
-                        <label><input type="checkbox" class="checkbox">
-                            <span class="checkbox-fontas">SQL</span></label>
-                        <label><input type="checkbox" class="checkbox">
-                            <span class="checkbox-fontas">SHELL</span></label>
-                        <label><input type="checkbox" class="checkbox">
-                            <span class="checkbox-fontas checkbox-fontas_last">情報システム基礎知識(その他)</span></label>
-                    </h1>
-                </div>
-                <div class="second_container">
-                    <h1 class="learning_time">学習時間</h1>
-                    <input type="text" class="learning_hours input_space">
-                    <h1 class="twitter_for_comment">Twitter用コメント</h1>
-                    <textarea name="" id="content" cols="30" rows="10" class="comment_for_twitter input_space"></textarea>
-                    <div class="twitter_share">
-                        <label><input type="checkbox" class="checkbox" id="check">
-                            <span class="checkbox-fontas">Twitterにシェアする</span></label>
+                    <div class="second_container">
+                        <h1 class="learning_time">学習時間</h1>
+                            <input type="text" name="hour" class="learning_hours input_space">
+                        <h1 class="twitter_for_comment">Twitter用コメント</h1>
+                            <textarea name="" id="content" cols="30" rows="10" class="comment_for_twitter input_space"></textarea>
+                        <div class="twitter_share">
+                            <label><input type="checkbox" class="checkbox" id="check">
+                                <span class="checkbox-fontas">Twitterにシェアする</span></label>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <a href=""><p id="twitter" class="record_register_modal"><span class="record_register_modal_word">記録・登録</span></p></a>
+                {{-- id = "twitter"  を後でどうにかする --}}
+                <button type="submit"  class="record_register_modal record_register_modal_word">記録・登録</button>
+            </form>
             <div id="closeModal" class="closeModal">
                 ×
             </div>
             <div class="loading" id="load"></div>
             <img id="done" class="done" src="{{ asset('/images/done.png') }}" alt="">
         </div>
-
     </section>
 
 
@@ -156,32 +138,57 @@
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <!-- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> -->
 
-        {{-- <script>
-        const to_json = [
-            {Element : "Element", Density : "Density"},
-            {Element :"", Density :3},
-        ]
-console.log(to_json); // 確認用
-console.log(to_json[0].Element); // 「JsonData1」が表示される
 
-
-        
-
-    </script> --}}
 
 <script>
+    // 棒グラフに挿入するデータ
     let date = @json($dates);
-    let arry = []
+    let date_arry = []
+    var today = new Date();
+    var daysInMonth = new Date(today.getFullYear(), today.getMonth()+1, 0).getDate();
+    for(var i=1; i<=daysInMonth; i++){
+        let days_arr = [i.toString().padStart(2, '0'),0];
+        date_arry.push(days_arr);
+    }
+    console.log(date_arry);
     date.forEach(function(val){
-    let dateV = val.date
-    let str = dateV.slice(8); 
+        let dateV = val.date
+        let str = String(dateV.slice(8)); 
+        for(var i=0; i<daysInMonth; i++){
+            if(str == date_arry[i][0]){
+                if(val.hour !== date_arry[i][1]){
+                    date_arry[i].splice(1,1,val.hour);
+                }else{
+                    continue;
+                }
+            }
+        }
+    });
+    date_arry.unshift(["Element", "Density"]);
 
-    let arr = [str, val.hour];
-    arry.push(arr);
-});
-arry.unshift(["Element", "Density"]);
+
+    //学習言語の円グラフに挿入するデータ
+    let studied_lang = @json($studied_langs);
+    // console.log(studied_lang);
+    let studied_lang_arry = []
+    // console.log(studied_lang_arry);
+    studied_lang.forEach(function(val){
+        let arr = [String(val.lang_id), Number(val.total_hour)];
+        studied_lang_arry.push(arr);
+    });
+    studied_lang_arry.unshift(['Lang', 'Hours']);
 
 
+    //学習コンテンツの円グラフに挿入するデータ
+    let studied_content = @json($studied_contents);
+    // console.log(studied_lang);
+    let studied_content_arry = []
+    // console.log(studied_lang_arry);
+    studied_content.forEach(function(val){
+        let arr = [String(val.content_id), Number(val.total_hour)];
+        studied_content_arry.push(arr);
+    });
+    studied_content_arry.unshift(['Content', 'Hours']);
 
 
 
