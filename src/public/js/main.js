@@ -143,7 +143,7 @@ document.getElementById("twitter").addEventListener('click', function(event) {
   modal.classList.add("invisible");
   twitter.classList.add("invisible");
   load.style.display="block";
-  event.preventDefault();
+  // event.preventDefault();
   if(document.getElementById('check').checked){
   window.open(
       "https://twitter.com/intent/tweet?text=" + encodeURIComponent(document.getElementById("content").value),
@@ -153,7 +153,7 @@ document.getElementById("twitter").addEventListener('click', function(event) {
   setTimeout(()=>{
     load.style.display="none";
     done.style.display="block";
-  },3300)
+  },2300)
 });
 
 

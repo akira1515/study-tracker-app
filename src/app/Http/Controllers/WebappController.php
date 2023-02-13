@@ -53,19 +53,28 @@ class WebappController extends Controller
 
     public function execStore(Request $request)
     {
-
+        // dd($request); 
         $date = $request->date;
         $hour = $request->hour;
         StudyRecord::create(['date' => $date, 'hour' => $hour]);
 
         $study_record_id = StudyRecord::max('id');
-        // dd($study_record_id); 
-        $studiedContent = $request->studiedContent;
-        StudiedContent::create(["study_record_id" => $study_record_id, "content_id" => $studiedContent]);
+        
+        $studiedContents = $request->studiedContent;
+        foreach ($studiedContents as $studiedContent) {
 
-        $studiedLang = $request->studiedLang;
-        StudiedLang::create(["study_record_id" => $study_record_id, "lang_id" => $studiedLang]);
+            StudiedContent::create(["study_record_id" => $study_record_id, "content_id" => $studiedContent]);
+        }
+        
 
+        $studiedLangs = $request->studiedLang;
+        foreach ($studiedLangs as $studiedLang) {
+
+            StudiedLang::create(["study_record_id" => $study_record_id, "lang_id" => $studiedLang]);
+        }
+        
+
+        sleep(4);
         return redirect()->route('webapp');
     }
 }

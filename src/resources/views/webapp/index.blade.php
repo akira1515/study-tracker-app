@@ -80,13 +80,13 @@
                     <div class="first_container">
                         <p class="learning_day">学習日</p>
                             {{-- <input type="text" name="date" class="learning_date input_space" id="sample"> --}}
-                            <input type="date" name="date" class="learning_date input_space">
+                            <input type="date" name="date" class="learning_date input_space" required >
                         <div class="learning_contents">
                         学習コンテンツ（複数選択可）
                         </div>
                         <h1 class="learning_contents_choices">
                             @foreach($contents as $id => $content)
-                                <label><input type="checkbox" name="studiedContent" value="{{ $id+1 }}" class="checkbox">
+                                <label><input type="checkbox" name="studiedContent[]" value="{{ $id+1 }}" class="checkbox" >
                                     <span class="checkbox-fontas">{{$content->name}}</span></label>
                             @endforeach
                         </h1>
@@ -95,14 +95,14 @@
                         </div>
                         <h1 class="learning_contents_choices">
                             @foreach($langs as $id => $lang)
-                                <label><input type="checkbox" name="studiedLang" value="{{ $id+1 }}" class="checkbox">
+                                <label><input type="checkbox" name="studiedLang[]" value="{{ $id+1 }}" class="checkbox" >
                                     <span class="checkbox-fontas">{{$lang->name}}</span></label>
                             @endforeach
                         </h1>
                     </div>
                     <div class="second_container">
                         <h1 class="learning_time">学習時間</h1>
-                            <input type="text" name="hour" class="learning_hours input_space">
+                            <input type="text" name="hour" class="learning_hours input_space" required>
                         <h1 class="twitter_for_comment">Twitter用コメント</h1>
                             <textarea name="" id="content" cols="30" rows="10" class="comment_for_twitter input_space"></textarea>
                         <div class="twitter_share">
@@ -112,7 +112,7 @@
                     </div>
                 </div>
                 {{-- id = "twitter"  を後でどうにかする --}}
-                <button type="submit"  class="record_register_modal record_register_modal_word">記録・登録</button>
+                <button type="submit" id = "twitter" class="record_register_modal record_register_modal_word">記録・登録</button>
             </form>
             <div id="closeModal" class="closeModal">
                 ×

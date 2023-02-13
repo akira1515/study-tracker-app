@@ -37,13 +37,6 @@ Route::group(
         // Route::post('/webapp', function(Request $request){
         // });
         
-
-        
-        
-
-        
-        
-
     }
 );
 Route::get('/home', 'HomeController@index')->name('home');
