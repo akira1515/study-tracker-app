@@ -2,12 +2,14 @@ version: "3"
 
 services:
   db:
-    build:
-      context: ./db
+    image: "mysql:8.0.31"
+    # build:
+      # context: ./db
     ports:
       - 3306:3306
     volumes:
       - ./db/var/lib/mysql:/var/lib/mysql
+      - ./db/etc/my.conf:/etc/mysql/conf.d/my.conf
     environment:
       - MYSQL_DATABASE=laravel
       - MYSQL_USER=laravel

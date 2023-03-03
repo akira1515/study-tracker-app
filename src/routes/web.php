@@ -32,7 +32,7 @@ Route::group(
         Auth::routes();
         Route::get('/webapp/index', 'WebappController@index')->name('webapp');
         Route::post('/webapp/index', 'WebappController@execStore')->name('execStore');
-        Route::get('/webapp/test', 'WebappController@test')->name("test");
+        // Route::get('/webapp/test', 'WebappController@test')->name("test");
         
         // Route::post('/webapp', function(Request $request){
         // });
