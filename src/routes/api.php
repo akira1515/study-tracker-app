@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Auth\ForgotPasswordController;
 use Illuminate\Http\Request;
 
 /*
