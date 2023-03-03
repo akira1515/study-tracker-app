@@ -26,12 +26,12 @@ Route::get('/', function () {
 });
 
 // Route::resource('webapp', '\App\Http\Controllers\WebappController');
+Auth::routes();
 Route::group(
     ['middleware' => 'auth'],
     function () {
-        Auth::routes();
-        Route::get('/webapp/index', 'WebappController@index')->name('webapp');
-        Route::post('/webapp/index', 'WebappController@execStore')->name('execStore');
+        Route::get('/webapp', 'WebappController@index')->name('webapp');
+        Route::post('/webapp', 'WebappController@execStore')->name('execStore');
         // Route::get('/webapp/test', 'WebappController@test')->name("test");
         
         // Route::post('/webapp', function(Request $request){
