@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class StudyRecord extends Model
 {
     //
-    protected $fillable = ['date','hour']; 
+    protected $fillable = ['date','hour','user_id']; 
 }

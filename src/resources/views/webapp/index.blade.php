@@ -16,7 +16,6 @@
     <header>
         <h1 class="logo">
             <a href=""><img src="{{ asset('/images/posse_logo.jpg') }}" alt=""></a>
-            <p>4th week</p>
             <p>{{ Auth::user()->name }} 様 </p>
         </h1>
         
@@ -150,7 +149,7 @@
         let days_arr = [i.toString().padStart(2, '0'),0];
         date_arry.push(days_arr);
     }
-    console.log(date_arry);
+    // console.log(date_arry);
     date.forEach(function(val){
         let dateV = val.date
         let str = String(dateV.slice(8)); 
@@ -169,7 +168,7 @@
 
     //学習言語の円グラフに挿入するデータ
     let studied_lang = @json($studied_langs);
-    // console.log(studied_lang);
+    console.log(studied_lang);
     let studied_lang_arry = []
     // console.log(studied_lang_arry);
     studied_lang.forEach(function(val){
