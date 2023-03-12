@@ -43,7 +43,6 @@
         </table>
         <a href="/admin/content/add/index">学習コンテンツの新規追加</a>
         </div>
-
         <br>
         <br>
         <br>
