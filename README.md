@@ -1,3 +1,7 @@
+# Qiita
+概要はQiitaにまとめております。  
+https://qiita.com/ak-posse/items/1921c8b918260697fd12
+
 # パス
 - ログイン/新規登録 <br>
 localhost 
